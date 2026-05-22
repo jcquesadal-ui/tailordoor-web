@@ -617,6 +617,132 @@
     color: #666;
   }
 
+  /* PORTFOLIO FILTERS */
+  .portfolio-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 48px;
+  }
+
+  .filter-btn {
+    font-family: var(--ff-sans);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sage);
+    background: transparent;
+    border: 0.5px solid rgba(164,176,162,0.25);
+    border-radius: 2px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .filter-btn:hover {
+    border-color: var(--sage);
+    color: var(--white);
+  }
+
+  .filter-btn.active {
+    background: var(--tan);
+    border-color: var(--tan);
+    color: var(--forest);
+  }
+
+  .filter-count {
+    font-size: 10px;
+    opacity: 0.7;
+  }
+
+  /* MASONRY GRID */
+  .projects-masonry {
+    columns: 4;
+    column-gap: 12px;
+  }
+
+  .projects-masonry .project-card {
+    break-inside: avoid;
+    margin-bottom: 12px;
+    height: 240px;
+    border-radius: 3px;
+  }
+
+  .projects-masonry .project-card-featured {
+    height: 380px;
+  }
+
+  .projects-masonry .project-card.hidden {
+    display: none;
+  }
+
+  /* LIGHTBOX */
+  .lightbox {
+    position: fixed; inset: 0; z-index: 2000;
+    background: rgba(0,0,0,0.95);
+    display: none; align-items: center; justify-content: center;
+    padding: 20px;
+  }
+  .lightbox.active { display: flex; }
+
+  .lightbox-inner {
+    position: relative; max-width: 1000px; width: 100%;
+    display: flex; flex-direction: column; align-items: center; gap: 16px;
+  }
+
+  .lb-close {
+    position: absolute; top: -40px; right: 0;
+    background: none; border: none; color: var(--sage);
+    font-size: 20px; cursor: pointer; padding: 8px;
+    transition: color 0.2s;
+  }
+  .lb-close:hover { color: var(--white); }
+
+  .lb-prev, .lb-next {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: rgba(43,54,50,0.8); border: 0.5px solid rgba(164,176,162,0.3);
+    color: var(--white); font-size: 20px; cursor: pointer;
+    width: 44px; height: 44px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s; z-index: 10;
+  }
+  .lb-prev { left: -56px; }
+  .lb-next { right: -56px; }
+  .lb-prev:hover, .lb-next:hover { background: var(--moss); }
+
+  .lb-img-wrap {
+    width: 100%; max-height: 65vh;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .lb-img-wrap img {
+    max-width: 100%; max-height: 65vh;
+    object-fit: contain; border-radius: 3px;
+  }
+
+  .lb-info { text-align: center; }
+  .lb-name { font-family: var(--ff-display); font-size: 22px; font-weight: 300; color: var(--white); font-style: italic; }
+  .lb-type { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--sage); margin-top: 4px; }
+  .lb-counter { font-size: 11px; color: rgba(164,176,162,0.5); margin-top: 4px; }
+
+  .lb-thumbs {
+    display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
+    max-width: 600px;
+  }
+
+  .lb-thumb {
+    width: 60px; height: 60px; border-radius: 3px; overflow: hidden;
+    cursor: pointer; opacity: 0.5; transition: opacity 0.2s;
+    border: 1.5px solid transparent;
+  }
+  .lb-thumb:hover { opacity: 0.8; }
+  .lb-thumb.active { opacity: 1; border-color: var(--tan); }
+  .lb-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
   /* PROJECTS */
   .projects {
     background: var(--white);
@@ -962,7 +1088,7 @@
     .services-grid { grid-template-columns: 1fr; }
     .process-steps { grid-template-columns: 1fr 1fr; }
     .process-steps::before { display: none; }
-    .projects-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+    .projects-masonry { columns: 2; }
     .project-card:first-child { grid-row: auto; }
     .contact { grid-template-columns: 1fr; }
     .footer { flex-direction: column; gap: 24px; text-align: center; }
@@ -1234,85 +1360,186 @@
       <p class="section-tag">Portafolio</p>
       <h2 class="section-title">Proyectos <em>realizados</em></h2>
     </div>
-    <a href="#contacto" class="btn-ghost" style="color:var(--moss);">Ver todos los proyectos</a>
   </div>
 
-  <div class="projects-grid reveal">
-    <!-- Featured -->
-    <div class="project-card">
-      <div class="project-bg" style="background:var(--forest);">
-        <svg width="100%" height="100%" viewBox="0 0 400 600" preserveAspectRatio="xMidYMid slice" fill="none">
-          <rect width="400" height="600" fill="#2B3632"/>
-          <rect x="80" y="60" width="240" height="480" rx="4" fill="#223028"/>
-          <path d="M100 400 C130 350, 160 310, 200 260 C240 210, 270 180, 300 130" stroke="#A4B0A2" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.4"/>
-          <path d="M90 420 C120 370, 150 330, 190 280 C230 230, 260 200, 295 148" stroke="#A4B0A2" stroke-width="0.8" fill="none" stroke-linecap="round" opacity="0.3"/>
-          <path d="M110 440 C140 390, 170 350, 210 300 C250 250, 280 218, 308 165" stroke="#A4B0A2" stroke-width="0.6" fill="none" stroke-linecap="round" opacity="0.25"/>
-          <circle cx="205" cy="320" r="6" fill="#B79F7B" opacity="0.8"/>
-          <rect x="80" y="60" width="240" height="480" rx="4" stroke="#A4B0A2" stroke-width="0.5" fill="none" opacity="0.3"/>
-        </svg>
+  <!-- FILTERS -->
+  <div class="portfolio-filters reveal">
+    <button class="filter-btn active" onclick="filterProjects('all')">Todos <span class="filter-count">17</span></button>
+    <button class="filter-btn" onclick="filterProjects('hoteleria')">Hotelería <span class="filter-count">3</span></button>
+    <button class="filter-btn" onclick="filterProjects('torres')">Torres residenciales <span class="filter-count">8</span></button>
+    <button class="filter-btn" onclick="filterProjects('corporativo')">Corporativo <span class="filter-count">2</span></button>
+    <button class="filter-btn" onclick="filterProjects('carpinteria')">Carpintería arquitectónica <span class="filter-count">4</span></button>
+  </div>
+
+  <div class="projects-masonry reveal" id="projectsGrid">
+
+    <!-- HOTELERÍA -->
+    <div class="project-card" data-cat="hoteleria" onclick="openGallery('sleep-inn')">
+      <div class="project-bg">
+        <img src="https://drive.google.com/thumbnail?id=1ZjD9uUTPVB6zr1MjAWKCZk2IcuiPty1N&sz=w800" alt="Sleep Inn" style="width:100%;height:100%;object-fit:cover;"/>
       </div>
       <div class="project-overlay"></div>
       <div class="project-info">
-        <div class="project-type">Hotel · Los Cabos</div>
-        <div class="project-name">Grand Dunes Resort</div>
+        <div class="project-type">Hotelería · Tijuana, BCN</div>
+        <div class="project-name">Sleep Inn</div>
       </div>
     </div>
 
-    <!-- Card 2 -->
-    <div class="project-card">
-      <div class="project-bg" style="background:var(--tan);">
-        <svg width="100%" height="100%" viewBox="0 0 300 300" preserveAspectRatio="xMidYMid slice" fill="none">
-          <rect width="300" height="300" fill="#B79F7B"/>
-          <rect x="50" y="30" width="200" height="240" rx="3" fill="#a08d69"/>
-          <path d="M60 250 C90 200, 120 170, 150 130 C180 90, 210 70, 240 40" stroke="#2B3632" stroke-width="1" fill="none" opacity="0.3"/>
-          <path d="M55 260 C85 210, 115 180, 145 140 C175 100, 205 80, 236 48" stroke="#2B3632" stroke-width="0.7" fill="none" opacity="0.2"/>
-          <circle cx="150" cy="155" r="5" fill="#2B3632" opacity="0.5"/>
-        </svg>
+    <div class="project-card" data-cat="hoteleria" onclick="openGallery('ibis')">
+      <div class="project-bg">
+        <img src="https://drive.google.com/thumbnail?id=1Ws46d0ruohvq0fZVnHt_rZeBncw2-5kL&sz=w800" alt="Ibis" style="width:100%;height:100%;object-fit:cover;"/>
       </div>
       <div class="project-overlay"></div>
       <div class="project-info">
-        <div class="project-type">Residencial · CDMX</div>
-        <div class="project-name">Casa Bosques</div>
+        <div class="project-type">Hotelería · Guasave, Sin.</div>
+        <div class="project-name">Ibis</div>
       </div>
     </div>
 
-    <!-- Card 3 -->
-    <div class="project-card">
-      <div class="project-bg" style="background:var(--moss);">
-        <svg width="100%" height="100%" viewBox="0 0 300 300" preserveAspectRatio="xMidYMid slice" fill="none">
-          <rect width="300" height="300" fill="#44534C"/>
-          <rect x="50" y="30" width="200" height="240" rx="3" fill="#374440"/>
-          <path d="M65 250 C100 200, 130 165, 150 120 C170 80, 200 60, 235 35" stroke="#A4B0A2" stroke-width="1.2" fill="none" opacity="0.5"/>
-          <path d="M60 265 C95 215, 125 180, 145 135 C165 90, 195 70, 230 45" stroke="#A4B0A2" stroke-width="0.8" fill="none" opacity="0.3"/>
-          <circle cx="150" cy="150" r="5" fill="#B79F7B" opacity="0.7"/>
-        </svg>
+    <!-- TORRES RESIDENCIALES -->
+    <div class="project-card project-card-featured" data-cat="torres" onclick="openGallery('the-woods')">
+      <div class="project-bg">
+        <img src="https://drive.google.com/thumbnail?id=1qH266QsYgBeb9dEzrh7QOke76VxuoE0-&sz=w800" alt="The Woods" style="width:100%;height:100%;object-fit:cover;"/>
       </div>
       <div class="project-overlay"></div>
       <div class="project-info">
-        <div class="project-type">Hotel Boutique · Oaxaca</div>
-        <div class="project-name">Hotel Origen</div>
+        <div class="project-type">Torre residencial · Mazatlán, Sin.</div>
+        <div class="project-name">The Woods</div>
       </div>
     </div>
 
-    <!-- Card 4 -->
-    <div class="project-card">
-      <div class="project-bg" style="background:#1a2420;">
-        <svg width="100%" height="100%" viewBox="0 0 300 300" preserveAspectRatio="xMidYMid slice" fill="none">
-          <rect width="300" height="300" fill="#1a2420"/>
-          <rect x="50" y="30" width="200" height="240" rx="3" fill="#141e1b"/>
-          <path d="M65 255 C100 205, 132 168, 152 122 C172 78, 202 58, 238 32" stroke="#B79F7B" stroke-width="1.1" fill="none" opacity="0.5"/>
-          <path d="M60 270 C95 220, 127 183, 147 137 C167 91, 197 71, 233 45" stroke="#B79F7B" stroke-width="0.8" fill="none" opacity="0.3"/>
-          <circle cx="152" cy="152" r="5" fill="#A4B0A2" opacity="0.7"/>
-        </svg>
+    <div class="project-card" data-cat="torres" onclick="openGallery('san-agustin')">
+      <div class="project-bg">
+        <img src="https://drive.google.com/thumbnail?id=17onKDHbrVUgcrZu-2pgDkuPsspZvdmXe&sz=w800" alt="San Agustín 425" style="width:100%;height:100%;object-fit:cover;"/>
       </div>
       <div class="project-overlay"></div>
       <div class="project-info">
-        <div class="project-type">Corporativo · Monterrey</div>
-        <div class="project-name">Torre Nogal</div>
+        <div class="project-type">Torre residencial · Culiacán, Sin.</div>
+        <div class="project-name">San Agustín 425</div>
       </div>
     </div>
+
+    <div class="project-card" data-cat="torres" onclick="openGallery('milan-quo')">
+      <div class="project-bg">
+        <img src="https://drive.google.com/thumbnail?id=1nVy4YAtazs-uHiCW1LJEjksi5ZO43sFU&sz=w800" alt="Milán Quo" style="width:100%;height:100%;object-fit:cover;"/>
+      </div>
+      <div class="project-overlay"></div>
+      <div class="project-info">
+        <div class="project-type">Torre residencial · Culiacán, Sin.</div>
+        <div class="project-name">Milán Quo</div>
+      </div>
+    </div>
+
+    <div class="project-card project-card-featured" data-cat="torres" onclick="openGallery('lucca-tower')">
+      <div class="project-bg">
+        <img src="https://drive.google.com/thumbnail?id=1BXf2LxJC4xiN0pll44ACQ870_5Uvb3Sl&sz=w800" alt="Lucca Tower" style="width:100%;height:100%;object-fit:cover;"/>
+      </div>
+      <div class="project-overlay"></div>
+      <div class="project-info">
+        <div class="project-type">Torre residencial · Los Cabos, BCS</div>
+        <div class="project-name">Lucca Tower</div>
+      </div>
+    </div>
+
+    <div class="project-card" data-cat="torres" onclick="openGallery('edena')">
+      <div class="project-bg">
+        <img src="https://drive.google.com/thumbnail?id=1HxVkov6GJEvV7Gy3GsJ35Gi34K9dohLE&sz=w800" alt="Edena" style="width:100%;height:100%;object-fit:cover;"/>
+      </div>
+      <div class="project-overlay"></div>
+      <div class="project-info">
+        <div class="project-type">Torre residencial · Culiacán, Sin.</div>
+        <div class="project-name">Edena</div>
+      </div>
+    </div>
+
+    <!-- CORPORATIVO -->
+    <div class="project-card" data-cat="corporativo" onclick="openGallery('hospital-angeles')">
+      <div class="project-bg">
+        <img src="https://drive.google.com/thumbnail?id=1KHLBnDltcTGptkjVhDORz4Fhlh6wfCFb&sz=w800" alt="Hospital Ángeles" style="width:100%;height:100%;object-fit:cover;"/>
+      </div>
+      <div class="project-overlay"></div>
+      <div class="project-info">
+        <div class="project-type">Corporativo · Culiacán, Sin.</div>
+        <div class="project-name">Hospital Ángeles</div>
+      </div>
+    </div>
+
+    <div class="project-card project-card-featured" data-cat="corporativo" onclick="openGallery('campus-coppel')">
+      <div class="project-bg">
+        <img src="https://drive.google.com/thumbnail?id=1mkvTJJ2ZYulguU5RuMrM8x0euADaUOy6&sz=w800" alt="Campus Digital Coppel" style="width:100%;height:100%;object-fit:cover;"/>
+      </div>
+      <div class="project-overlay"></div>
+      <div class="project-info">
+        <div class="project-type">Corporativo · Culiacán, Sin.</div>
+        <div class="project-name">Campus Digital Coppel</div>
+      </div>
+    </div>
+
+    <!-- CARPINTERÍA -->
+    <div class="project-card" data-cat="carpinteria" onclick="openGallery('casa-vp')">
+      <div class="project-bg">
+        <img src="https://drive.google.com/thumbnail?id=1LQwu1mVIeEoFavEErRH0wrLgxrTaYc1a&sz=w800" alt="Casa VP" style="width:100%;height:100%;object-fit:cover;"/>
+      </div>
+      <div class="project-overlay"></div>
+      <div class="project-info">
+        <div class="project-type">Carpintería arquitectónica · La Primavera</div>
+        <div class="project-name">Casa VP</div>
+      </div>
+    </div>
+
+    <div class="project-card" data-cat="carpinteria" onclick="openGallery('casa-sa438')">
+      <div class="project-bg">
+        <img src="https://drive.google.com/thumbnail?id=1foIvaJkTJnBAjYnd0pEE4arL0w5803GX&sz=w800" alt="Casa SA438" style="width:100%;height:100%;object-fit:cover;"/>
+      </div>
+      <div class="project-overlay"></div>
+      <div class="project-info">
+        <div class="project-type">Carpintería arquitectónica · La Primavera</div>
+        <div class="project-name">Casa SA438</div>
+      </div>
+    </div>
+
+    <div class="project-card" data-cat="carpinteria" onclick="openGallery('casa-sp15')">
+      <div class="project-bg">
+        <img src="https://drive.google.com/thumbnail?id=13431vtO2ovKEkffz1buJ934s7uFn-EqK&sz=w800" alt="Casa SP15" style="width:100%;height:100%;object-fit:cover;"/>
+      </div>
+      <div class="project-overlay"></div>
+      <div class="project-info">
+        <div class="project-type">Carpintería arquitectónica · La Primavera</div>
+        <div class="project-name">Casa SP15</div>
+      </div>
+    </div>
+
+    <div class="project-card" data-cat="carpinteria" onclick="openGallery('casa-109')">
+      <div class="project-bg">
+        <img src="https://drive.google.com/thumbnail?id=1dxLFCTcaS_sPHP-Ay05z7R4MGzi0_mWG&sz=w800" alt="Casa 109" style="width:100%;height:100%;object-fit:cover;"/>
+      </div>
+      <div class="project-overlay"></div>
+      <div class="project-info">
+        <div class="project-type">Carpintería arquitectónica · La Primavera</div>
+        <div class="project-name">Casa 109</div>
+      </div>
+    </div>
+
   </div>
 </section>
+
+<!-- LIGHTBOX GALLERY -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <div class="lightbox-inner">
+    <button class="lb-close" onclick="closeLightbox()">✕</button>
+    <button class="lb-prev" onclick="prevPhoto(event)">&#8592;</button>
+    <button class="lb-next" onclick="nextPhoto(event)">&#8594;</button>
+    <div class="lb-img-wrap">
+      <img id="lbImg" src="" alt=""/>
+    </div>
+    <div class="lb-info">
+      <div id="lbName" class="lb-name"></div>
+      <div id="lbType" class="lb-type"></div>
+      <div id="lbCounter" class="lb-counter"></div>
+    </div>
+    <div class="lb-thumbs" id="lbThumbs"></div>
+  </div>
+</div>
 
 <!-- CLIENTS -->
 <div class="clients reveal">
@@ -1417,6 +1644,145 @@
 </footer>
 
 <script>
+  // Gallery data
+  const galleries = {
+    'sleep-inn': {
+      name: 'Sleep Inn', type: 'Hotelería · Tijuana, BCN',
+      photos: ['1ZjD9uUTPVB6zr1MjAWKCZk2IcuiPty1N','15V8g03WeFFFEefUeJpynqSseJKBM-8xX','15nU9er_rciJ8sxoCkaGR1uylHN205BNb','1pVNIeTzdFyjdrVboaBSUxleg-HKIsh9d']
+    },
+    'ibis': {
+      name: 'Ibis', type: 'Hotelería · Guasave, Sin.',
+      photos: ['1Ws46d0ruohvq0fZVnHt_rZeBncw2-5kL','1hyR-lW4E9VoMDPVZDuYXSc3JnZvH9Tu-','1cUJGwA6c4OABKNhHZLCpREBMudEKdXeb']
+    },
+    'the-woods': {
+      name: 'The Woods', type: 'Torre residencial · Mazatlán, Sin.',
+      photos: ['1qH266QsYgBeb9dEzrh7QOke76VxuoE0-','1aqYx_yRlWBqEtHDqDCGRhl3rtWn066yd','10vrpv4bqoRDWlch9ugDy6BVLG2S6ANwK','1-h7_E8GtKpVQj0bbiOba_0t5MKw12L2G']
+    },
+    'san-agustin': {
+      name: 'San Agustín 425', type: 'Torre residencial · Culiacán, Sin.',
+      photos: ['17onKDHbrVUgcrZu-2pgDkuPsspZvdmXe']
+    },
+    'milan-quo': {
+      name: 'Milán Quo', type: 'Torre residencial · Culiacán, Sin.',
+      photos: ['1nVy4YAtazs-uHiCW1LJEjksi5ZO43sFU','1RedJyuaDLzNQwceK3KOhDdK2s5UR0AwN','1PmKAIf7lm1kogri4yr4wVDSN8B0bsXad','19w1ItC8qWN7UFM8X8ESgZ17P05dljYy5']
+    },
+    'lucca-tower': {
+      name: 'Lucca Tower', type: 'Torre residencial · Los Cabos, BCS',
+      photos: ['1BXf2LxJC4xiN0pll44ACQ870_5Uvb3Sl','1Ij2sNwxPaSr8MR91FQe_oa_si0SlvN3P','1UjZugiKCoat0yIpQCCjIEsMR_yD1UkYW','1Vt5cczn-gFYbSZ0rnRKMh8HmTW48m4Ng']
+    },
+    'edena': {
+      name: 'Edena', type: 'Torre residencial · Culiacán, Sin.',
+      photos: ['1HxVkov6GJEvV7Gy3GsJ35Gi34K9dohLE','1h8Ev_IMhQXJ8nOZ2oirVc1_Vd3uwJ61x','1hJQV0brua5-i2yYpPKiI7zOMQcEk6UNd']
+    },
+    'hospital-angeles': {
+      name: 'Hospital Ángeles', type: 'Corporativo · Culiacán, Sin.',
+      photos: ['1KHLBnDltcTGptkjVhDORz4Fhlh6wfCFb','1hUs11mQlIKsFmxy2Sx_PpUJtWF28M9-U','1XEJnIX8sz3IA1v4oFtLZJtTiADb9SKhH','1CK5K0cyW3YtKxr6pOv1IRnku0CG4_WYO','1lpCXt5425bI3K8WEs_1cIWDxscMPVJet']
+    },
+    'campus-coppel': {
+      name: 'Campus Digital Coppel', type: 'Corporativo · Culiacán, Sin.',
+      photos: ['1mkvTJJ2ZYulguU5RuMrM8x0euADaUOy6','1E68i98wtkEVaV3VwVVQHqPAAOUtQ4u76','1XMU-FU1F5uTWLUn2f79735pPn-kKtCBC']
+    },
+    'casa-vp': {
+      name: 'Casa VP', type: 'Carpintería arquitectónica · La Primavera',
+      photos: ['1LQwu1mVIeEoFavEErRH0wrLgxrTaYc1a','1hTd8MG0PBoGfuKj7zyUNgdSACIQd64LD','10EIT1cCRnLbngFxYVAujxllmt8CZf5_u']
+    },
+    'casa-sa438': {
+      name: 'Casa SA438', type: 'Carpintería arquitectónica · La Primavera',
+      photos: ['1foIvaJkTJnBAjYnd0pEE4arL0w5803GX','1fTA0ZfX3E4W0ayWMFDkcPPkjZ2uU59O4','10Mm19ch334hVlkulanr4PKXFh9LqecrG','1selU5AjiKfOZ4lxZVw4eu1NTWaKVYsQl','1tRjmIX4zGkHDHBIdnGI0gd-hwpHBOVnC','11SZyqXXroPyTpEcGdMyKYGN32nrufwFp']
+    },
+    'casa-sp15': {
+      name: 'Casa SP15', type: 'Carpintería arquitectónica · La Primavera',
+      photos: ['13431vtO2ovKEkffz1buJ934s7uFn-EqK','1BOBufgxtjcoz40gBYnCUr7RRWA2RnLg8','1fzgzHcpG1GP-LeBuvBVsnOYLU0s5PgHQ','1aDc79TSgakTwVmBC2h6Dzkl6pA3Cy8z6']
+    },
+    'casa-109': {
+      name: 'Casa 109', type: 'Carpintería arquitectónica · La Primavera',
+      photos: ['1dxLFCTcaS_sPHP-Ay05z7R4MGzi0_mWG','1YZugcFGJkzRNVs8t0Ac5Rx3o1hL_vCNZ']
+    }
+  };
+
+  let currentGallery = null;
+  let currentIndex = 0;
+
+  function imgUrl(id) {
+    return `https://drive.google.com/thumbnail?id=${id}&sz=w1200`;
+  }
+
+  function thumbUrl(id) {
+    return `https://drive.google.com/thumbnail?id=${id}&sz=w120`;
+  }
+
+  function openGallery(key) {
+    currentGallery = galleries[key];
+    currentIndex = 0;
+    renderLightbox();
+    document.getElementById('lightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function renderLightbox() {
+    const g = currentGallery;
+    document.getElementById('lbImg').src = imgUrl(g.photos[currentIndex]);
+    document.getElementById('lbName').textContent = g.name;
+    document.getElementById('lbType').textContent = g.type;
+    document.getElementById('lbCounter').textContent = `${currentIndex + 1} / ${g.photos.length}`;
+
+    const thumbs = document.getElementById('lbThumbs');
+    thumbs.innerHTML = g.photos.map((id, i) =>
+      `<div class="lb-thumb ${i === currentIndex ? 'active' : ''}" onclick="goToPhoto(${i})">
+        <img src="${thumbUrl(id)}" alt="foto ${i+1}"/>
+      </div>`
+    ).join('');
+  }
+
+  function goToPhoto(i) {
+    currentIndex = i;
+    renderLightbox();
+  }
+
+  function prevPhoto(e) {
+    e && e.stopPropagation();
+    currentIndex = (currentIndex - 1 + currentGallery.photos.length) % currentGallery.photos.length;
+    renderLightbox();
+  }
+
+  function nextPhoto(e) {
+    e && e.stopPropagation();
+    currentIndex = (currentIndex + 1) % currentGallery.photos.length;
+    renderLightbox();
+  }
+
+  function closeLightbox(e) {
+    if (!e || e.target === document.getElementById('lightbox') || e.target.classList.contains('lb-close')) {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (!document.getElementById('lightbox').classList.contains('active')) return;
+    if (e.key === 'ArrowRight') nextPhoto();
+    if (e.key === 'ArrowLeft') prevPhoto();
+    if (e.key === 'Escape') closeLightbox({target: document.getElementById('lightbox')});
+  });
+
+  // Portfolio filters
+  function filterProjects(cat) {
+    const cards = document.querySelectorAll('.project-card[data-cat]');
+    const btns = document.querySelectorAll('.filter-btn');
+
+    btns.forEach(btn => btn.classList.remove('active'));
+    event.target.closest('.filter-btn').classList.add('active');
+
+    cards.forEach(card => {
+      if (cat === 'all' || card.dataset.cat === cat) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  }
+
   // Custom cursor
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
