@@ -1,0 +1,22 @@
+backend:
+  name: github
+  repo: jcquesadal-ui/tailordoor-web
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "pagina"
+    label: "Página principal"
+    files:
+      - label: "Contenido general"
+        name: "home"
+        file: "content/home.yml"
+        fields:
+          - {label: "Título hero", name: "hero_title", widget: "string"}
+          - {label: "Subtítulo hero", name: "hero_subtitle", widget: "text"}
+          - {label: "Tagline", name: "tagline", widget: "string"}
+          - {label: "Testimonial", name: "testimonial_text", widget: "text"}
+          - {label: "Autor testimonial", name: "testimonial_author", widget: "string"}
+          - {label: "Cargo autor", name: "testimonial_role", widget: "string"}
